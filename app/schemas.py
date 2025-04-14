@@ -1,9 +1,15 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, constr
+from enum import Enum
+
+class RoleEnum(str, Enum):
+    patient = "patient"
+    doctor = "doctor"
+    admin = "admin"
 
 class UserCreate(BaseModel):
     username: str
     password: str
-    role: str
+    role: RoleEnum
 
 class UserLogin(BaseModel):
     username: str
@@ -12,7 +18,7 @@ class UserLogin(BaseModel):
 class UserResponse(BaseModel):
     id: int
     username: str
-    role: str
+    role: RoleEnum
 
     class Config:
         orm_mode = True
