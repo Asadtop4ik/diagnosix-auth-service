@@ -189,4 +189,3 @@ curl http://localhost:8000/auth/me \
 - **Имя**: Асадбек
 - **Контакт**: [asadbek.backend.com]
 - **GitHub**: [github.com/Asadtop4ik] 
-```
