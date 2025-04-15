@@ -5,7 +5,6 @@ from app.models import RoleEnum
 
 @pytest.mark.asyncio
 async def test_register_user(client, test_db):
-    # Foydalanuvchi ro'yxatdan o'tkazishni sinash
     response = client.post(
         "/auth/register",
         json={"username": "newuser", "password": "newpass", "role": RoleEnum.patient.value}  # .value qo'shildi
@@ -18,7 +17,6 @@ async def test_register_user(client, test_db):
 
 @pytest.mark.asyncio
 async def test_register_user_already_exists(client, test_user):
-    # Mavjud foydalanuvchi bilan ro'yxatdan o'tkazishni sinash
     response = client.post(
         "/auth/register",
         json={"username": "testuser", "password": "testpass", "role": RoleEnum.patient.value}  # .value qo'shildi
@@ -28,7 +26,6 @@ async def test_register_user_already_exists(client, test_user):
 
 @pytest.mark.asyncio
 async def test_login_success(client, test_user):
-    # Muvaffaqiyatli loginni sinash
     response = client.post(
         "/auth/login",
         json={"username": "testuser", "password": "testpass"}
@@ -40,7 +37,6 @@ async def test_login_success(client, test_user):
 
 @pytest.mark.asyncio
 async def test_login_invalid_credentials(client, test_user):
-    # Noto'g'ri ma'lumotlar bilan loginni sinash
     response = client.post(
         "/auth/login",
         json={"username": "testuser", "password": "wrongpass"}
@@ -50,7 +46,6 @@ async def test_login_invalid_credentials(client, test_user):
 
 @pytest.mark.asyncio
 async def test_get_me(client, test_user):
-    # /me endpointini sinash
     token = create_access_token({"sub": "testuser", "role": "patient"})
     response = client.get(
         "/auth/me",

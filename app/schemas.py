@@ -11,17 +11,17 @@ class UserCreate(BaseModel):
     password: str
     role: RoleEnum
 
-    model_config = ConfigDict(from_attributes=True)  # class Config o'rniga
+    model_config = ConfigDict(from_attributes=True)
 
 class UserLogin(BaseModel):
     username: str
     password: str
 
-    model_config = ConfigDict(from_attributes=True)  # class Config o'rniga
+    model_config = ConfigDict(from_attributes=True)
 
 class UserResponse(BaseModel):
     id: int
     username: str
     role: RoleEnum
 
-    model_config = ConfigDict(from_attributes=True)  # class Config o'rniga
+    model_config = ConfigDict(from_attributes=True)

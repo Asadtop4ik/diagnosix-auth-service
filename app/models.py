@@ -7,7 +7,6 @@ class RoleEnum(str, enum.Enum):
     doctor = "doctor"
     admin = "admin"
 
-# SQLAlchemy model
 class User(Base):
     __tablename__ = "users"
 

@@ -7,16 +7,16 @@ from app.main import app
 from app.routes.auth_routes import get_db
 from app.models import User, RoleEnum
 
-# Test uchun SQLite bazasini sozlash
+
 SQLALCHEMY_DATABASE_URL = "sqlite:///./test.db"
 engine = create_engine(SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False})
 TestingSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 
-# TestClient va DB sessionni sozlash
+
 @pytest.fixture(scope="function")
 def client():
-    # Har bir testdan oldin bazani yaratish
+
     Base.metadata.drop_all(bind=engine)
     Base.metadata.create_all(bind=engine)
 
@@ -44,7 +44,7 @@ def test_db():
 
 @pytest.fixture(scope="function")
 def test_user(test_db):
-    # Test foydalanuvchi yaratish
+
     from app.auth import hash_password
     user = User(
         username="testuser",
