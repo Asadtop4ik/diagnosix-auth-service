@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, UTC  # UTC qo'shildi
 from typing import Dict, Any
 from fastapi import HTTPException
 from passlib.context import CryptContext
@@ -19,7 +19,7 @@ def verify_password(password: str, hashed_password: str) -> bool:
 def create_access_token(data: Dict[str, Any], expires_delta: timedelta = timedelta(minutes=30)) -> str:
     """Create a JWT access token with the given data and expiration time."""
     to_encode = data.copy()
-    expire = datetime.utcnow() + expires_delta
+    expire = datetime.now(UTC) + expires_delta  # utcnow() o'rniga now(UTC)
     to_encode.update({"exp": expire})
     encoded_jwt = jwt.encode(to_encode, settings.JWT_SECRET_KEY, algorithm=settings.JWT_ALGORITHM)
     return encoded_jwt

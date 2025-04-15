@@ -46,6 +46,18 @@ services:
     networks:
       - app-network
 
+  test:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+    command: [ "pytest", "-v" ]
+    networks:
+      - app-network
+
 volumes:
   postgres_data:
 
